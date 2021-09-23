@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="yurii_module_form" >
+            <field name="name">yurii_module.form</field>
+            <field name="model">yurii_module.yurii_module</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                            <field name="name"/>
+                            <field name="value"/>
+                            <field name="value2"/>
+                            </group>
+                            <group>
+                            <field name="email"/>
+                            <field name="instagram"/>
+                            <field name="add"/>
+                            <field name="level"/>
+                            <field name="contact_from_id" attrs="{'invisible':[('add','=',False)]}"/>
+                            <field name="select_contact_from_ids" attrs="{'invisible':[('add','=',False)]}"
+                                   widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="email_contact" readonly="1"/>
+                            <field name="project_field_id"/>
+                            <field name="task_field_id" domain="[('project_id', '=', project_field_id)]" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="yurii_module.list">
+            <field name="name">yurii_module list</field>
+            <field name="model">yurii_module.yurii_module</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="value2"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="yurii_module.action_window">
+            <field name="name">yurii_module window</field>
+            <field name="res_model">yurii_module.yurii_module</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="yurii_module.action_server">
+            <field name="name">yurii_module server</field>
+            <field name="model_id" ref="model_yurii_module_yurii_module"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="yurii_module" id="yurii_module.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Menu 1" id="yurii_module.menu_1" parent="yurii_module.menu_root"/>
+        <menuitem name="Menu 2" id="yurii_module.menu_2" parent="yurii_module.menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="List" id="yurii_module.menu_1_list" parent="yurii_module.menu_1"
+                  action="yurii_module.action_window"/>
+        <menuitem name="Server to list" id="yurii_module" parent="yurii_module.menu_2"
+                  action="yurii_module.action_server"/>
+
+    </data>
+</odoo>
