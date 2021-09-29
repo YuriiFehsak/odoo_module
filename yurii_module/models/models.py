@@ -14,9 +14,9 @@ class yurii_module(models.Model):
      email = fields.Integer("Email")
      instagram = fields.Char("Instagram")
      add = fields.Boolean(string = "Add")
-     level = fields.Selection([('code',' low'),
-                               ('code', 'middle'),
-                               ('code', 'high')],
+     level = fields.Selection([('low',' low'),
+                               ('middle', 'middle'),
+                               ('high', 'high')],
                                 string = "Category")
      contact_from_id = fields.Many2one('res.partner', string="Contact_from Contacts")
      select_contact_from_ids = fields.Many2many('res.partner', string="Select_from Contacts")
