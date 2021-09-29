@@ -24,6 +24,12 @@ class yurii_module(models.Model):
      project_field_id = fields.Many2one('project.project', string="Projects")
      task_field_id = fields.Many2one('project.task', string="Tasks")
 
+     def wiz_open(self):
+         return {'type': 'ir.actions.act_window',
+                 'res_model': 'update.wizard',
+                 'view_mode': 'form',
+                 'target': 'new'}
+
      @api.depends('value')
      def _value_pc(self):
          for record in self:
