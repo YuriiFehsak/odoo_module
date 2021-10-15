@@ -14,15 +14,21 @@ class yurii_module(models.Model):
      email = fields.Integer("Email")
      instagram = fields.Char("Instagram")
      add = fields.Boolean(string = "Add")
-     level = fields.Selection([('code',' low'),
-                               ('code', 'middle'),
-                               ('code', 'high')],
+     level = fields.Selection([('low',' low'),
+                               ('middle', 'middle'),
+                               ('high', 'high')],
                                 string = "Category")
      contact_from_id = fields.Many2one('res.partner', string="Contact_from Contacts")
      select_contact_from_ids = fields.Many2many('res.partner', string="Select_from Contacts")
      email_contact = fields.Char(string="Email_customer", related="select_contact_from_ids.email")
      project_field_id = fields.Many2one('project.project', string="Projects")
      task_field_id = fields.Many2one('project.task', string="Tasks")
+
+     def wiz_open(self):
+         return {'type': 'ir.actions.act_window',
+                 'res_model': 'update.wizard',
+                 'view_mode': 'form',
+                 'target': 'new'}
 
      @api.depends('value')
      def _value_pc(self):

@@ -6,6 +6,7 @@
             <field name="model">yurii_module.yurii_module</field>
             <field name="arch" type="xml">
                 <form>
+                    <button name="wiz_open" string="Update" type="object"/>
                     <sheet>
                         <group>
                             <group>
