@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="vchasno_set_list_view">
+            <field name="name">vchasno set list</field>
+            <field name="model">vchasno.set</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pricelist_id"/>
+                    <field name="company_vat"/>
+                    <field name="action_vchasno"/>
+                    <field name="number"/>
+                    <field name="date_document"/>
+                    <field name="date_from"/>
+                    <field name="supplirer"/>
+                    <field name="buyer"/>
+                    <field name="sender"/>
+                    <field name="recipient"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="vchasno_set_form_view">
+            <field name="name">vchasno set form</field>
+            <field name="model">vchasno.set</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="pricelist_id" required="1"/>
+                                <field name="company_vat" required="1"/>
+                                <field name="action_vchasno" required="1"/>
+                                <field name="number" required="1"/>
+                                <field name="date_document" required="1"/>
+                                <field name="date_from" required="1"/>
+                            </group>
+                            <group>
+                                <field name="supplirer" required="1"/>
+                                <field name="buyer" required="1"/>
+                                <field name="sender" required="1"/>
+                                <field name="recipient" required="1"/>
+                            </group>
+                            <group>
+                                <field name="id_buyer" required="1"/>
+                                <field name="additional_buyer_code" required="1"/>
+                                <field name="action_vchasno_product" required="1"/>
+                            </group>
+                        </group>
+                        <button string="Set price to Vchasno"
+                                type="object"
+                                name="set_price"
+                                class="btn-primary"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vchasno_set_action_window">
+            <field name="name">vchasno set</field>
+            <field name="res_model">vchasno.set</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Vchasno" id="vchasno_menu_root"/>
+        <menuitem name="Vchasno set" id="vchasno_set_menu_root" parent="vchasno_menu_root"
+                  action="vchasno_set_action_window" sequence="1"/>
+    </data>
+</odoo>
