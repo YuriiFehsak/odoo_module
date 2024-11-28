@@ -30,6 +30,7 @@ class VchasnoSet(models.Model):
 
     id_buyer = fields.Char(string='ID Buyer')
     additional_buyer_code = fields.Char(string='Additional Buyer code')
+    test_line = fields.One2many('vchasno.set.line', 'vchasno_id', string='Test line')
 
     @api.constrains("company_vat", "supplirer", "buyer", "sender", "recipient", "id_buyer", "additional_buyer_code")
     def _checking_integer(self):
